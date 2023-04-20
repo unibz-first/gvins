@@ -29,16 +29,16 @@ class FeaturePerFrame
         velocity.y() = _point(6); 
         cur_td = td;
     }
-    double cur_td;
-    Vector3d point;
-    Vector2d uv;
-    Vector2d velocity;
-    double z;
-    bool is_used;
-    double parallax;
+    double cur_td = 0.0;
+    Vector3d point = Vector3d::Zero();
+    Vector2d uv = Vector2d::Zero();
+    Vector2d velocity = Vector2d::Zero();
+    double z = 0.0;
+    bool is_used = false;
+    double parallax = 0.0;
     MatrixXd A;
     VectorXd b;
-    double dep_gradient;
+    double dep_gradient = 0.0;
 };
 
 class FeaturePerId
@@ -54,7 +54,7 @@ class FeaturePerId
     double estimated_depth;
     int solve_flag; // 0 haven't solve yet; 1 solve succ; 2 solve fail;
 
-    Vector3d gt_p;
+    Vector3d gt_p = Vector3d::Zero();
 
     FeaturePerId(int _feature_id, int _start_frame)
         : feature_id(_feature_id), start_frame(_start_frame),
