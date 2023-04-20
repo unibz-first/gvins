@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 2.8.3)
 project(gvins)
 
 set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++14") # critical modification
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(catkin REQUIRED COMPONENTS
     roscpp
@@ -23,6 +25,8 @@ add_message_files(
 )
 generate_messages(DEPENDENCIES std_msgs)
 
+# from https://github.com/HKUST-Aerial-Robotics/GVINS/issues/41
+set(OpenCV_DIR "/usr/include/opencv4")
 find_package(OpenCV REQUIRED)
 
 find_package(Ceres REQUIRED)

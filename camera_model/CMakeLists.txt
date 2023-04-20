@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 2.8.3)
 project(gvins_camera_model)
 
 set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++14")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -fPIC")
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(catkin REQUIRED COMPONENTS
     roscpp
@@ -13,6 +15,8 @@ find_package(catkin REQUIRED COMPONENTS
 find_package(Boost REQUIRED COMPONENTS filesystem program_options system)
 include_directories(${Boost_INCLUDE_DIRS})
 
+# from https://github.com/HKUST-Aerial-Robotics/GVINS/issues/41
+set(OpenCV_DIR "/usr/include/opencv4")
 find_package(OpenCV REQUIRED)
 
 # set(EIGEN_INCLUDE_DIR "/usr/local/include/eigen3")
@@ -64,4 +68,5 @@ add_library(gvins_camera_model
     src/gpl/EigenQuaternionParameterization.cc)
 
 target_link_libraries(gvins_Calibration ${Boost_LIBRARIES} ${OpenCV_LIBS} ${CERES_LIBRARIES})
+
 target_link_libraries(gvins_camera_model ${Boost_LIBRARIES} ${OpenCV_LIBS} ${CERES_LIBRARIES})
